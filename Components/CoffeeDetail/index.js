@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
+import list from "../CoffeeList/data";
 
 // NativeBase Components
 import {
@@ -38,11 +39,12 @@ class CoffeeDetail extends Component {
       option: value
     });
   };
-
   render() {
     const { cafes } = coffeeStore;
     if (!cafes) return <Content />;
-    const cafe = cafes[0];
+    const cafe = cafes.find(
+      cafe => cafe.id === this.props.navigation.getParam("cafeID")
+    );
     return (
       <Content>
         <List>
